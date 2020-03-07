@@ -13,6 +13,16 @@
         - `composer --version` to check if composer is installed (if not, [add path to .bash_profile](https://stackoverflow.com/questions/25373188/laravel-installation-how-to-place-the-composer-vendor-bin-directory-in-your))
     - Windows
         - `TODO`
+- install Postgresql
+    - Mac
+        - `brew install postgres`
+        - to start postgres use `brew services start postgresql`
+        - open postgres cli with `psql postgres`
+        - create role root without password `CREATE ROLE root superuser;`
+        - create database `CREATE DATABASE backend OWNER root;`
+        - quit cli with `\q`
+        - run `php artisan migrate` to create tables
+        - run `hp artisan passport:install` to create oauth keys
 - clone project
 - run project
     - Mac
