@@ -1,5 +1,9 @@
 # Backend
 
+## API documentation
+
+[Apiari](https://sw2backend.docs.apiary.io/#)
+
 ## Run project
 
 - install PHP (7 and above)
@@ -36,3 +40,4 @@
 - [How to make REST api with laravel (CRUD + Versioning)](https://www.youtube.com/playlist?list=PL41lfR-6DnOppiHXkPKZ2tT1WBIjIufVs)
 - [How to write unit tests in laravel](https://www.youtube.com/watch?v=RJ_iXzdSpT0&t=1269s)
 - [Policies](https://www.youtube.com/watch?v=NrlY-xeqHBg)
+- [Relationships](https://medium.com/swlh/a-guide-on-laravel-relationships-1febfac430f6)
