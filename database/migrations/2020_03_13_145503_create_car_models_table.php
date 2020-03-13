@@ -14,7 +14,7 @@ class CreateCarModelsTable extends Migration
     public function up()
     {
         Schema::create('car_models', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->smallInteger('fuel_type');
             $table->smallInteger('gear');

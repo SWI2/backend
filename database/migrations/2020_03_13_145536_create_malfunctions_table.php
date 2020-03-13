@@ -14,7 +14,7 @@ class CreateMalfunctionsTable extends Migration
     public function up()
     {
         Schema::create('malfunctions', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->smallInteger('state');
             $table->string('short_description');
             $table->string('description');
