@@ -15,7 +15,11 @@ class CreateCarModelsTable extends Migration
     {
         Schema::create('car_models', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->string('name')->unique();
+            $table->smallInteger('fuel_type');
+            $table->smallInteger('gear');
+            $table->smallInteger('number_of_seats');
+            $table->integer('power');
         });
     }
 

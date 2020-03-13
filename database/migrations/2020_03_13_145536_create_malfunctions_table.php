@@ -15,7 +15,13 @@ class CreateMalfunctionsTable extends Migration
     {
         Schema::create('malfunctions', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->smallInteger('state');
+            $table->string('short_description');
+            $table->string('description');
+            $table->float('total_cost');
+            $table->date('discovery_date');
+            $table->date('last_update_date');
+            $table->date('repair_date');
         });
     }
 
