@@ -19,6 +19,7 @@ class CreateImagesTable extends Migration
             $table->bigInteger('car_id');
 
             $table->string('url');
+            $table->boolean('is_thumbnail');
 
             $table->foreign('car_id')->references('id')->on('cars');
         });
