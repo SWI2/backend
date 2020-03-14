@@ -15,6 +15,9 @@ class CreateMalfunctionsTable extends Migration
     {
         Schema::create('malfunctions', function (Blueprint $table) {
             $table->bigIncrements('id');
+
+            $table->bigInteger('car_id');
+
             $table->smallInteger('state');
             $table->string('short_description');
             $table->string('description');
@@ -22,6 +25,8 @@ class CreateMalfunctionsTable extends Migration
             $table->date('discovery_date');
             $table->date('last_update_date');
             $table->date('repair_date');
+
+            $table->foreign('car_id')->references('id')->on('cars');
         });
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCarModelsTable extends Migration
+class CreateImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateCarModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('car_models', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->unique();
-            $table->smallInteger('fuel_type');
-            $table->smallInteger('gear');
-            $table->smallInteger('number_of_seats');
-            $table->integer('power');
+
+            $table->bigInteger('car_id');
+
+            $table->string('url');
+
+            $table->foreign('car_id')->references('id')->on('cars');
         });
     }
 
@@ -30,6 +31,6 @@ class CreateCarModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('car_models');
+        Schema::dropIfExists('images');
     }
 }
