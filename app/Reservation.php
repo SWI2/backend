@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reservation extends Model
 {
-    
+    public $timestamps = false;
+
     public function files()
     {
         return $this->morphMany('App\File', 'fileable');
