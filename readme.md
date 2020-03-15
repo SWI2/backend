@@ -41,3 +41,7 @@
 - [How to write unit tests in laravel](https://www.youtube.com/watch?v=RJ_iXzdSpT0&t=1269s)
 - [Policies](https://www.youtube.com/watch?v=NrlY-xeqHBg)
 - [Relationships](https://medium.com/swlh/a-guide-on-laravel-relationships-1febfac430f6)
+
+## Third party libraries
+
+- [Laravel enum for easier enum usage](https://github.com/BenSampo/laravel-enum#installation)
