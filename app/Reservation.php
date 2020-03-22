@@ -2,11 +2,10 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Reservation extends BaseModel
 {
-    
+    public $timestamps = false;
+
     public function files()
     {
         return $this->morphMany('App\File', 'fileable');

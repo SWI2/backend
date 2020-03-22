@@ -2,22 +2,20 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Car extends BaseModel
 {
-    
-    public function images() 
+
+    public function images()
     {
         return $this->hasMany('App\Image');
     }
 
-    public function malfunctions() 
+    public function malfunctions()
     {
         return $this->hasMany('App\Malfunction');
     }
 
-    public function carModel() 
+    public function carModel()
     {
         return $this->belongsTo('App\CarModel');
     }

@@ -45,3 +45,7 @@
 ## Third party libraries
 
 - [Laravel enum for easier enum usage](https://github.com/BenSampo/laravel-enum#installation)
+
+## Issues solving
+
+- when you can't run migration because of [reflection expection](https://stackoverflow.com/questions/36206742/class-usertableseeder-does-not-exist-laravel-5-0-php-artisan-dbseed), run `composer dumpautoload`
