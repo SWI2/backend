@@ -3,8 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\BaseModel;
 
-class File extends Model
+class File extends BaseModel
 {
 
     public $timestamps = false;
