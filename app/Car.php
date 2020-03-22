@@ -2,11 +2,8 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Car extends BaseModel
 {
-    public $timestamps = false;
 
     public function images()
     {
