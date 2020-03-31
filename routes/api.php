@@ -20,7 +20,7 @@ Route::post('/login', 'Api\AuthController@login');
 Route::post('/cars/models', 'CarModelController@store');
 
 // Test route
-Roite::get('/', function()
+Route::get('/', function()
 {
     return "Hello world!";
 });
