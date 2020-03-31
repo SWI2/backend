@@ -17,4 +17,11 @@ Route::post('/register', 'Api\AuthController@register');
 Route::post('/login', 'Api\AuthController@login');
 
 // Car models
+
 Route::post('/cars/models', 'CarModelController@store');
+
+// Test route
+Route::get('/', function()
+{
+    return "Hello world!";
+});
