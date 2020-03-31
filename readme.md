@@ -1,5 +1,7 @@
 # Backend
 
+![Test run](https://github.com/SWI2/backend/workflows/PHP%20Composer/badge.svg?branch=master)
+
 ## API documentation
 
 [Apiari](https://sw2backend.docs.apiary.io/#)
