@@ -1,0 +1,31 @@
+name: Test run
+
+on:
+  push:
+    branches:
+      - master
+      - devel
+  pull_request:
+    branches:
+      - master
+      - devel
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Add execute priviledges to run tests
+      run: chmod +x ./RunTests.sh
+      
+    - name: Run tests
+      run: ./RunTests.sh
