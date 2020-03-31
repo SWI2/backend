@@ -1,6 +1,6 @@
 # Backend
 
-![Test run](https://github.com/SWI2/backend/workflows/PHP%20Composer/badge.svg?branch=master)
+![Test run](https://github.com/SWI2/backend/workflows/Test%20run/badge.svg?branch=master)
 
 ## API documentation
 
