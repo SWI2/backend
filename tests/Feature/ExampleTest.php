@@ -4,18 +4,27 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\CarModel;
 
 class ExampleTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testBasicTest()
-    {
-        $response = $this->get('/');
+    use RefreshDatabase;
 
-        $response->assertStatus(200);
+    /** @test*/
+    public function basic_test()
+    {
+        $this->withoutExceptionHandling();
+
+        $response = $this->post('/api/cars/models', [
+            'name' => 'Test',
+            'car_type' => 0,
+            'fuel_type' => 0,
+            'gear' => 5,
+            'number_of_seats' => 5,
+            'power' => 9001
+        ]);
+
+        $response->assertOk();
+        $this->assertCount(1, CarModel::all());
     }
 }

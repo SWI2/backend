@@ -12,11 +12,10 @@ class AuthController extends Controller
     {
         $validatedData = $request->validate([
             'name'=>'required|max:55',
-            'email'=>'required|required|unique:users',
+            'email'=>'required|unique:users',
             'password'=>'required|confirmed',
         ]);
-
-        //kryptovanie hesla
+        
         $validatedData['password'] = bcrypt($request->password);
 
         $user = User::create($validatedData);
@@ -28,7 +27,6 @@ class AuthController extends Controller
 
     public function login (Request $request)
     {
-
         $loginData = $request->validate([
             'email' => 'email|required',
             'password' => 'required'
@@ -42,5 +40,4 @@ class AuthController extends Controller
 
         return response(['user' => auth()->user(), 'access_token' => $accessToken]);
     }
-
 }
