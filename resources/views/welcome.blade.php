@@ -68,7 +68,7 @@
         <div class="flex-center position-ref full-height">
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel SW2 backend
+                    Laravel SW2 backend Skuska
                 </div>
 
                 <div class="links">
