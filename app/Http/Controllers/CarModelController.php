@@ -2,19 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Car;
 use App\CarModel;
 use App\Http\Resources\CarModelResource;
 use App\Http\Resources\CarModelResourceCollection;
-use App\Http\Resources\CarResource;
-
 
 class CarModelController extends Controller
 {
-    /**
-     * @param CarModel $carModel
-     * @return CarModelResource
-     */
+
     public function show(CarModel $carModel): CarModelResource
     {
         return new CarModelResource($carModel);
@@ -25,7 +19,7 @@ class CarModelController extends Controller
      */
     public function index(): CarModelResourceCollection
     {
-        return new CarModelResourceCollection(Carmodel::all());
+        return new CarModelResourceCollection(CarModel::all());
     }
 
     public function store(Request $request)

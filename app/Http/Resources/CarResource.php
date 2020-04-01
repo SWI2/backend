@@ -6,6 +6,7 @@ use App\CarModel;
 use App\Enums\CarState;
 use App\Car;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\DB;
 
 class CarResource extends JsonResource
 {
@@ -17,10 +18,14 @@ class CarResource extends JsonResource
      */
     public function toArray($request)
     {
-        //return parent::toArray($request);
+        $thumbnail = DB::table('images')->select('url')->where('car_id', $this->id)->where('is_thumbnail', true)->value('url');
+
         return [
-            "pricing_per_day" => $this->pricing_per_day,
-            //"model" => new CarModelResource(CarModel::find()) $this->car_model_id->model,
+            'id' => $this->id,
+            'pricing_per_day' => $this->pricing_per_day,
+            'thumbnail_url' => $thumbnail,
+            'state' => 0,
+            'model' => new CarModelResource(CarModel::findOrFail($this->car_model_id)),
         ];
     }
 }
