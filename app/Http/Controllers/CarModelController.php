@@ -2,14 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Car;
 use App\CarModel;
-use App\Enums\FuelType;
-use App\Enums\CarType;
+use App\Http\Resources\CarModelResource;
+use App\Http\Resources\CarModelResourceCollection;
+use App\Http\Resources\CarResource;
+
 
 class CarModelController extends Controller
 {
-    // TODO: - no validation
+    /**
+     * @param CarModel $carModel
+     * @return CarModelResource
+     */
+    public function show(CarModel $carModel): CarModelResource
+    {
+        return new CarModelResource($carModel);
+    }
+
+    /**
+     * @return CarModelResourceCollection
+     */
+    public function index(): CarModelResourceCollection
+    {
+        return new CarModelResourceCollection(Carmodel::all());
+    }
+
     public function store(Request $request)
     {
         $carModel = new CarModel();

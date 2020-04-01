@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use \App\Http\Controllers\CarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,12 @@ Route::post('/register', 'Api\AuthController@register');
 Route::post('/login', 'Api\AuthController@login');
 
 // Car models
+//Route::post('/cars/models', 'CarModelController@store');
+Route::apiResource('/cars/models', 'CarModelController');
 
-Route::post('/cars/models', 'CarModelController@store');
+// List all cars for customers
+//Route::get('/cars/{car}', 'CarController@show');
+Route::apiResource('/cars', 'CarController');
 
 // Test route
 Route::get('/', function()
