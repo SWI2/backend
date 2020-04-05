@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateImagesTable extends Migration
+class CreateCustomersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateImagesTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('images');
-        Schema::create('images', function (Blueprint $table) {
+        Schema::dropIfExists('customers');
+        Schema::create('customers', function (Blueprint $table) {
             $table->bigIncrements('id');
-
-            $table->bigInteger('car_id');
-
-            $table->string('url');
-            $table->boolean('is_thumbnail');
-
-           // $table->foreign('car_id')->references('id')->on('cars');
+            
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email')->unique();
+            $table->string('phone');
         });
     }
 
@@ -33,6 +31,6 @@ class CreateImagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists('customers');
     }
 }

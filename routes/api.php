@@ -20,6 +20,9 @@ Route::post('/login', 'Api\AuthController@login');
 
 Route::post('/cars/models', 'CarModelController@store');
 
+Route::post('/reservation', 'ReservationController@store');
+
+
 // Test route
 Route::get('/', function()
 {

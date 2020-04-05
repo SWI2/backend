@@ -4,6 +4,11 @@ namespace App;
 
 class Reservation extends BaseModel
 {
+
+    protected $fillable = [
+        'name', 'email', 'phone', 'from','to', 'note', 'car_id'
+    ];
+
     public $timestamps = false;
 
     public function files()
