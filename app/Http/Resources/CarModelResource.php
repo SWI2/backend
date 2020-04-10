@@ -20,9 +20,9 @@ class CarModelResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'type' => CarType::coerce($this->car_type)->description,
-            'fuel' => FuelType::coerce($this->fuel_type)->description,
-            'gear' => GearType::coerce($this->gear)->description,
+            'type' => $this->car_type->description,
+            'fuel' => $this->fuel_type->description,
+            'gear' => $this->gear->description,
             'number_of_seats' => $this->number_of_seats,
             'power' => $this->power,
         ];
