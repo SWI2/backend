@@ -15,16 +15,18 @@ class ExampleTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $response = $this->post('/api/cars/models', [
+        $response = $this->post('api/cars/models', [
             'name' => 'Test',
             'car_type' => 0,
             'fuel_type' => 0,
-            'gear' => 5,
+            'gear' => 1,
             'number_of_seats' => 5,
             'power' => 9001
         ]);
+        
+        $this->assertTrue(true);
 
-        $response->assertOk();
+        $response->assertStatus(201);
         $this->assertCount(1, CarModel::all());
     }
 }

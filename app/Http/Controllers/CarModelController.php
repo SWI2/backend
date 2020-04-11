@@ -30,22 +30,12 @@ class CarModelController extends Controller
         return new CarModelResourceCollection(CarModel::all());
     }
 
+    /**
+     * store new car model
+     */
     public function store(Request $request)
     {
-
-
-        Log::channel('stderr')->info($request);
-        $carModel = new CarModel();
-
-
-
-        $carModel->name = $request->name;
-        $carModel->car_type = $request->car_type;
-        $carModel->fuel_type = $request->fuel_type;
-        $carModel->gear = $request->gear;
-        $carModel->number_of_seats = $request->number_of_seats;
-        $carModel->power = $request->power;
-
+        $carModel = CarModel::create($request->all());
         return new CarModelResource($carModel);
     }
 }

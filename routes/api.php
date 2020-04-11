@@ -18,11 +18,9 @@ Route::post('/register', 'Api\AuthController@register');
 Route::post('/login', 'Api\AuthController@login');
 
 // Car models
-//Route::post('/cars/models', 'CarModelController@store');
 Route::apiResource('/cars/models', 'CarModelController');
 
 // List all cars for customers
-//Route::get('/cars/{car}', 'CarController@show');
 Route::apiResource('/cars', 'CarController');
 
 // Test route

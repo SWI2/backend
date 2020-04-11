@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Car;
+use Illuminate\Http\Request;
 use App\Http\Resources\CarResource;
 use App\Http\Resources\CarResourceCollection;
 
