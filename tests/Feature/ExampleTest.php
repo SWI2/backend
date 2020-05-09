@@ -31,6 +31,8 @@ class ExampleTest extends TestCase
             'number_of_seats' => 5,
             'power' => 9001
         ]);
+        
+        $this->assertTrue(true);
 
         $response->assertStatus(201);
         $this->assertCount(1, CarModel::all());
