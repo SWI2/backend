@@ -3,16 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\CarModel;
-use App\Enums\CarType;
-use App\Enums\FuelType;
-use App\Enums\GearType;
 use App\Http\Resources\CarModelResource;
 use App\Http\Resources\CarModelResourceCollection;
-use BenSampo\Enum\Rules\Enum;
-use BenSampo\Enum\Rules\EnumKey;
-use BenSampo\Enum\Rules\EnumValue;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class CarModelController extends Controller
 {
@@ -35,14 +28,7 @@ class CarModelController extends Controller
      */
     public function store(Request $request)
     {
-         $carModel = CarModel::create([
-            'name' => $request->name,
-            'car_type' => $request->car_type,
-            'fuel_type' => $request->fuel_type,
-            'gear' => $request->gear,
-            'number_of_seats' => $request->number_of_seats,
-            'power' => $request->power
-        ]);
+        $carModel = CarModel::create($request->all());
         return new CarModelResource($carModel);
     }
 }
