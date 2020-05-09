@@ -14,8 +14,7 @@ use \App\Http\Controllers\CarController;
 |
 */
 
-Route::post('/register', 'Api\AuthController@register');
-Route::post('/login', 'Api\AuthController@login');
+Route::post('/jwt', 'UserController@login');
 
 // Car models
 Route::apiResource('/cars/models', 'CarModelController');
@@ -24,6 +23,7 @@ Route::apiResource('/cars/models', 'CarModelController');
 Route::apiResource('/cars', 'CarController');
 
 // Test route
+
 Route::get('/', function()
 {
     return "Hello world!";
