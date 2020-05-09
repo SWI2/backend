@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-use \App\Http\Controllers\CarController;
+use App\Enums\UserType;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +16,16 @@ use \App\Http\Controllers\CarController;
 
 Route::post('/jwt', 'UserController@login');
 
-// Car models
-
-Route::post('/cars/models', 'CarModelController@store');
-
-// Test route
+// Cars
 
 Route::get('/cars', 'CarController@index');
+Route::get('/cars/{carId}', 'CarController@show');
+
+// Administration
+
+Route::middleware(['auth:api', 'usertype'])->group(function() {
+
+    // Cars administration
+
+    Route::middleware(['scope:'.UserType::Admin()->key])->post('/cars/models', 'CarModelController@store');
+});

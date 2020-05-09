@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\User;
 use App\Http\Controllers\AuthController;
+use App\Enums\UserType;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -25,7 +26,6 @@ class UserControllerTest extends TestCase
         $this->withoutExceptionHandling();
         
         $this->createMockUser();
-        $this->assertCount(1, User::all());
         
         $response = $this->post('/api/jwt', [
             'email' => 'user@example.com',
@@ -43,6 +43,7 @@ class UserControllerTest extends TestCase
         $user->email = 'user@example.com';
         $password = bcrypt('123456');
         $user->password = $password;
+        $user->type = UserType::Admin()->value;
 
         $user->save();
     }

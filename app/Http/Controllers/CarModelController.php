@@ -3,16 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\CarModel;
-use App\Enums\CarType;
-use App\Enums\FuelType;
-use App\Enums\GearType;
 use App\Http\Resources\CarModelResource;
 use App\Http\Resources\CarModelResourceCollection;
-use BenSampo\Enum\Rules\Enum;
-use BenSampo\Enum\Rules\EnumKey;
-use BenSampo\Enum\Rules\EnumValue;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class CarModelController extends Controller
 {
