@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Enums\UserType;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class JwtResource extends JsonResource
@@ -14,6 +15,13 @@ class JwtResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        $userTypeKey = $this->token->scopes[0];
+        if ($userTypeKey != null) {
+            $userTypeValue = UserType::coerce($userTypeKey)->value;
+        }
+        return [
+            'token' => $this->accessToken,
+            'usertype' => $userTypeValue ?? -1
+        ];
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Enums\UserType;
+use App\Http\Resources\JwtResource;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth; 
@@ -31,9 +32,8 @@ class UserController extends Controller
 
             $this->scope = $user->type->key;
 
-            $data['token'] = $user->createToken($user->email.'-'.now(), [$this->scope])->accessToken;
-            return response()
-                ->json(['data' => $data], 200);
+            $token = $user->createToken($user->email.'-'.now(), [$this->scope]);
+            return new JwtResource($token);
         } else {
             return response()
                 ->json(['message' => 'Invalid credentials'], 401);
