@@ -17,10 +17,15 @@ use \App\Http\Controllers\CarController;
 Route::post('/jwt', 'UserController@login');
 
 // Car models
+<<<<<<< HEAD
 Route::apiResource('/cars/models', 'CarModelController');
 
 // List all cars for customers
 Route::apiResource('/cars', 'CarController');
+=======
+
+Route::post('/cars/models', 'CarModelController@store');
+>>>>>>> master
 
 // Test route
 
