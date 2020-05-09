@@ -20,22 +20,5 @@ class CarTest extends TestCase
         $this->withoutExceptionHandling();
 
         $this->get('api/cars')->assertOk();
-        $this->get(route('cars.index'))->assertStatus(200);
     }
-
-    /**
-    * @test
-    */
-    public function car_status_test()
-    {
-        $this->withoutExceptionHandling();
-
-        //$this->actingAs(factory(Car::class));
-
-        //$this->get(route('cars.show', $car->id))->assertStatus(200);
-
-        $this->assertTrue(true);
-    }
-
-    
 }
