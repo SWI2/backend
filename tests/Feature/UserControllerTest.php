@@ -13,6 +13,12 @@ class UserControllerTest extends TestCase
 {
     use RefreshDatabase;
     
+    public function setup()
+    {
+        parent::setup();
+        $this->artisan('passport:install');
+    }
+    
     /** @test*/
     public function login_test()
     {
@@ -26,7 +32,7 @@ class UserControllerTest extends TestCase
             'password' => '123456'
         ]);
 
-        // $response->assertOk();
+        $response->assertOk();
     }
 
     private function createMockUser() 
