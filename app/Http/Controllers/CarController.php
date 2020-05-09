@@ -17,9 +17,14 @@ class CarController extends Controller
      * @param Car $car
      * @return CarResource
      */
-    public function show(Car $car): CarResource
+    public function show($carId)
     {
-        return new CarResource($car);
+        $car = Car::find($carId);
+        if ($car == null) {
+            return response()->json(['message' => 'Car with id '.$carId.' not found.'], 404);
+        } else {
+            return new CarResource($car);
+        }
     }
 
     /**

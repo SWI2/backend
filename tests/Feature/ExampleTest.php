@@ -4,7 +4,10 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\User;
+use Laravel\Passport\Passport;
 use App\CarModel;
+use App\Enums\UserType;
 
 class ExampleTest extends TestCase
 {
@@ -14,6 +17,11 @@ class ExampleTest extends TestCase
     public function basic_test()
     {
         $this->withoutExceptionHandling();
+
+        Passport::actingAs(
+            $this->createMockUser(),
+            [UserType::Admin()->key]
+        );
 
         $response = $this->post('api/cars/models', [
             'name' => 'Test',
@@ -28,5 +36,20 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(201);
         $this->assertCount(1, CarModel::all());
+    }
+
+    private function createMockUser() 
+    {
+        $user = new User();
+
+        $user->name = 'User';
+        $user->email = 'user@example.com';
+        $password = bcrypt('123456');
+        $user->password = $password;
+        $user->type = UserType::Admin()->value;
+
+        $user->save();
+
+        return $user;
     }
 }

@@ -5,18 +5,39 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
+use BenSampo\Enum\Traits\CastsEnums;
+use App\Enums\UserType;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasApiTokens;
+    use Notifiable, HasApiTokens, CastsEnums;
 
+    public $timestamps = false;
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 
+        'email', 
+        'password',
+        'type'
+    ];
+
+    /**
+     * The attributes which are represented as enum.
+     */
+    protected $enumCasts = [
+        'type' => UserType::class
+    ];
+
+    /**
+     * The cast of enum values.
+     */
+    protected $casts = [
+        'type' => 'int'
     ];
 
     /**
@@ -25,7 +46,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 
+        'remember_token',
     ];
 
     public function files()
