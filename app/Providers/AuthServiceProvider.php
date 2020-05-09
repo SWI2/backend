@@ -32,7 +32,7 @@ class AuthServiceProvider extends ServiceProvider
         Passport::tokensCan([
             UserType::Admin()->key => 'Edit everything',
             UserType::Seller()->key => 'Edit sales',
-            UserType::Mechanician()->key => 'Edit cars',
+            UserType::Mechanician()->key => 'Edit cars'
         ]);
     }
 }
