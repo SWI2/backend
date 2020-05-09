@@ -15,6 +15,10 @@ class CheckRole
      */
     public function handle($request, Closure $next)
     {
+        $userRole = $request->user()->type;
+        $request->request->add([
+            'scope' => $userRole->key
+        ]);
         return $next($request);
     }
 }

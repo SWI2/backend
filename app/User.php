@@ -23,7 +23,7 @@ class User extends Authenticatable
         'name', 
         'email', 
         'password',
-        'role'
+        'type'
     ];
 
     /**
@@ -34,7 +34,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The caset of enum values.
+     * The cast of enum values.
      */
     protected $casts = [
         'type' => 'int'
@@ -46,7 +46,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 
+        'remember_token',
     ];
 
     public function files()

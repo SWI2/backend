@@ -20,6 +20,13 @@ Route::post('/jwt', 'UserController@login');
 
 Route::post('/cars/models', 'CarModelController@store');
 
-// Test route
+// Cars
 
 Route::get('/cars', 'CarController@index');
+Route::get('/cars/{carId}', 'CarController@show');
+
+// Administration
+
+Route::middleware(['auth:api', 'usertype'])->group(function() {
+    
+});
