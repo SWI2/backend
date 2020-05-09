@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use App\Enums\UserType;
 
 class UsersTableSeeder extends Seeder
 {
@@ -16,6 +17,7 @@ class UsersTableSeeder extends Seeder
         $user->name = 'admin';
         $user->email = 'admin@example.com';
         $user->password = bcrypt('admin');
+        $user->type = UserType::Admin()->value;
         $user->save();
     }
 }
