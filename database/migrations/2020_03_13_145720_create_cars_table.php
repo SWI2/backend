@@ -13,8 +13,9 @@ class CreateCarsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('cars');
         Schema::create('cars', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
 
             $table->bigInteger('car_model_id');
 
@@ -22,7 +23,7 @@ class CreateCarsTable extends Migration
             $table->integer('production_year');
             $table->float('pricing_per_day', 8, 2);
 
-            $table->foreign('car_model_id')->references('id')->on('car_models');
+            //$table->foreign('car_model_id')->references('id')->on('car_models');
         });
     }
 
