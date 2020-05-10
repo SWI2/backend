@@ -1,15 +1,37 @@
 <?php
 
 namespace App;
+use BenSampo\Enum\Traits\CastsEnums;
+use App\Enums\ReservationState;
 
 class Reservation extends BaseModel
 {
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
-        'name', 'email', 'phone', 'from','to', 'note', 'car_id'
+        'renter_id', 
+        'returner_id', 
     ];
 
     public $timestamps = false;
+
+    /**
+     * The attributes which are represented as enum.
+     */
+    protected $enumCasts = [
+        'state' => ReservationState::class
+    ];
+
+    /**
+     * The cast of enum values.
+     */
+    protected $casts = [
+        'state' => 'int'
+    ];
 
     public function files()
     {
