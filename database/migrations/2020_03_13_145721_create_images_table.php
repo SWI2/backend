@@ -13,6 +13,7 @@ class CreateImagesTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('images');
         Schema::create('images', function (Blueprint $table) {
             $table->bigIncrements('id');
 
@@ -21,7 +22,7 @@ class CreateImagesTable extends Migration
             $table->string('url');
             $table->boolean('is_thumbnail');
 
-            $table->foreign('car_id')->references('id')->on('cars');
+           // $table->foreign('car_id')->references('id')->on('cars');
         });
     }
 

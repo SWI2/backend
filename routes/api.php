@@ -20,6 +20,7 @@ Route::post('/jwt', 'UserController@login');
 
 Route::get('/cars', 'CarController@index');
 Route::get('/cars/{carId}', 'CarController@show');
+Route::post('/reservation', 'ReservationController@store');
 
 // Administration
 

@@ -13,6 +13,7 @@ class CreateCarModelsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('car_models');
         Schema::create('car_models', function (Blueprint $table) {
             $table->bigIncrements('id');
 
