@@ -17,8 +17,8 @@ class CreateReservationsTable extends Migration
             $table->bigIncrements('id');
 
             $table->bigInteger('customer_id');
-            $table->bigInteger('renter_id');
-            $table->bigInteger('returner_id');
+            $table->bigInteger('renter_id')->nullable();
+            $table->bigInteger('returner_id')->nullable();
             $table->bigInteger('car_id');
 
             $table->smallInteger('state');

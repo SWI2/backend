@@ -2,24 +2,22 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\SeededTest;
 use App\User;
 use Laravel\Passport\Passport;
 use App\CarModel;
 use App\Enums\UserType;
 
-class ExampleTest extends TestCase
+class CarModelControllerTest extends SeededTest
 {
-    use RefreshDatabase;
-
+    
     /** @test*/
     public function basic_test()
     {
         $this->withoutExceptionHandling();
 
         Passport::actingAs(
-            $this->createMockUser(),
+            User::find(1),
             [UserType::Admin()->key]
         );
 
@@ -31,25 +29,7 @@ class ExampleTest extends TestCase
             'number_of_seats' => 5,
             'power' => 9001
         ]);
-        
-        $this->assertTrue(true);
 
         $response->assertStatus(201);
-        $this->assertCount(1, CarModel::all());
-    }
-
-    private function createMockUser() 
-    {
-        $user = new User();
-
-        $user->name = 'User';
-        $user->email = 'user@example.com';
-        $password = bcrypt('123456');
-        $user->password = $password;
-        $user->type = UserType::Admin()->value;
-
-        $user->save();
-
-        return $user;
     }
 }

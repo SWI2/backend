@@ -13,6 +13,7 @@ class CreateFilesTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('files');
         Schema::create('files', function (Blueprint $table) {
             $table->bigIncrements('id');
 
@@ -23,9 +24,9 @@ class CreateFilesTable extends Migration
             $table->string('name');
             $table->string('url');
 
-            $table->foreign('user_id')->references('id')->on('users');
+           /* $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('reservation_id')->references('id')->on('reservations');
-            $table->foreign('malfunction_id')->references('id')->on('malfunctions');
+            $table->foreign('malfunction_id')->references('id')->on('malfunctions');*/
         });
     }
 
