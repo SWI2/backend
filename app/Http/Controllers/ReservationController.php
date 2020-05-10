@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Reservation;
+use App\Customer;
 
 class ReservationController extends Controller
 {
@@ -14,6 +15,7 @@ class ReservationController extends Controller
 
         return response()->json([ 'data' => $reservations ], 200);
     }
+
     public function store(Request $request)
     {
         $this->validate($request , [
@@ -26,7 +28,14 @@ class ReservationController extends Controller
             'car_id' =>'required' ,
         ]);
 
-        $reservation = new Reservation;
+        $reservation = new Reservation();
+
+        $customer = Customer::where('email', $request->email)->findOr(function () {
+            $newCustomer = new Customer();
+            $newCustomer->email = $request->email;
+            $newCustomer->phone = $request->phone;
+        });
+
         $reservation->name = $request->name;
         $reservation->email = $request->email;
         $reservation->phone = $request->phone;
@@ -34,10 +43,9 @@ class ReservationController extends Controller
         $reservation->to = $request->to;
         $reservation->note = $request->note;
         $reservation->car_id = $request->car_id;
-        echo $reservation ->save();
 
-        return response()->json(['success' => true]);
-
+        return response()
+            ->json(['success' => true], 201);
     }
 
     /*public function show($id)
