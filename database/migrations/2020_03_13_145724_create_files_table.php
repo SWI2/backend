@@ -22,7 +22,7 @@ class CreateFilesTable extends Migration
             $table->bigInteger('malfunction_id')->nullable();;
 
             $table->string('name');
-            $table->string('url');
+            $table->string('absolute_path');
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('reservation_id')->references('id')->on('reservations');

@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Reservation;
 use App\Customer;
 use App\Car;
-use App\FileHandlers\BillingFactory;
+use App\File;
+use App\FileGenerators\ReservationAdvanceBillingFileGenerator;
 use App\Enums\ReservationState;
 use App\Http\Resources\ReservationResource;
 use Symfony\Component\HttpFoundation\Response;
@@ -41,32 +42,33 @@ class ReservationController extends Controller
             ['name' => $request->name, 'phone' => $request->phone]
         );
 
-        $reservation->rent_date = $request->from;
-        $reservation->return_date = $request->to;
+        $reservation->rent_date = $reservation->correctDateFormatFromISO8601($request->from);
+        $reservation->return_date = $reservation->correctDateFormatFromISO8601($request->to);
         $reservation->note = $request->note;
         $reservation->customer()->associate($customer);
         $reservation->state = ReservationState::Created();
 
-        $car = Car::find($request->car_id);
-
-        if ($car == null) {
-            return response()
-                ->json(['message' => 'Car with given ID '.$request->car_id.' does not exist'], Response::HTTP_NOT_FOUND);
-        }
-
-        $reservation->car_id = $request->car_id;
+        
+        $reservation->car()->associate($car);
 
         $reservation->save();
 
-        $this->createFile($reservation);
+        $this->craeteAdvanceBillingFile($reservation);
 
         return response()
             ->json(['success' => true], Response::HTTP_CREATED);
     }
 
-    public function createFile(Reservation $reservation) 
+    private function craeteAdvanceBillingFile(Reservation $reservation) 
     {
-        $billing = new BillingFactory($reservation);
-        $billing->make();
+        $billing = new ReservationAdvanceBillingFileGenerator($reservation);
+        $billing->generate();
+
+        $file = new File();
+        $file->name = $billing->fileName();
+        $file->absolutePath = $billing->filePath();
+        $file->reservation()->associate($reservation);
+
+        $file->save();
     }
 }
