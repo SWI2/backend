@@ -17,16 +17,16 @@ class CreateFilesTable extends Migration
         Schema::create('files', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->bigInteger('user_id');
-            $table->bigInteger('reservation_id');
-            $table->bigInteger('malfunction_id');
+            $table->bigInteger('user_id')->nullable();;
+            $table->bigInteger('reservation_id')->nullable();;
+            $table->bigInteger('malfunction_id')->nullable();;
 
             $table->string('name');
             $table->string('url');
 
-           /* $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('reservation_id')->references('id')->on('reservations');
-            $table->foreign('malfunction_id')->references('id')->on('malfunctions');*/
+            $table->foreign('malfunction_id')->references('id')->on('malfunctions');
         });
     }
 

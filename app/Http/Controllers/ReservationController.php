@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Reservation;
 use App\Customer;
 use App\Car;
+use App\FileHandlers\BillingFactory;
 use App\Enums\ReservationState;
+use Symfony\Component\HttpFoundation\Response;
 
 class ReservationController extends Controller
 {
@@ -22,7 +24,7 @@ class ReservationController extends Controller
     {
         $this->validate($request , [
             'name' =>'required' ,
-            'email' =>'required' ,
+            'email' =>'required|email' ,
             'phone' =>'required' ,
             'from' =>'required' ,
             'to' =>'required' ,
@@ -47,16 +49,22 @@ class ReservationController extends Controller
 
         if ($car == null) {
             return response()
-                ->json(['message' => 'Car with given ID '.$request->car_id.' does not exist'], 400);
+                ->json(['message' => 'Car with given ID '.$request->car_id.' does not exist'], Response::HTTP_NOT_FOUND);
         }
 
         $reservation->car_id = $request->car_id;
 
         $reservation->save();
 
+        $this->createFile($reservation);
+
         return response()
-            ->json(['success' => true], 201);
+            ->json(['success' => true], Response::HTTP_CREATED);
     }
 
-
+    public function createFile(Reservation $reservation) 
+    {
+        $billing = new BillingFactory($reservation);
+        $billing->make();
+    }
 }
