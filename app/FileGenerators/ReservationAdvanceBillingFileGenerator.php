@@ -5,7 +5,7 @@ namespace App\FileGenerators;
 use App\Reservation;
 use Mpdf\Mpdf;
 
-class ReservationAdvanceBillingFileGenerator implements IFileGenerator
+class ReservationAdvanceBillingFileGenerator extends FileGenerator
 {
     // Properties
 
@@ -23,16 +23,17 @@ class ReservationAdvanceBillingFileGenerator implements IFileGenerator
     {
         $mpdf = new Mpdf();
         $mpdf->WriteHTML('Hello World');
-        $mpdf->Output($this->filePath(), \Mpdf\Output\Destination::FILE);
+        $this->createDirectoryIfNotExists();
+        $mpdf->Output($this->absolutePath(), \Mpdf\Output\Destination::FILE);
     }
 
     public function fileName()
     {
-        return 'AdvanceBilling';
+        return 'AdvanceBilling.pdf';
     }
 
-    public function filePath()
+    public function directoryPath()
     {
-        return storage_path().'/app/reservations/'.$this->reservation->id.'/'.$this->fileName();
+        return storage_path().'/app/reservations/'.$this->reservation->id;
     }
 }

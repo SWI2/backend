@@ -35,22 +35,24 @@ class ReservationController extends Controller
             'car_id' =>'required' ,
         ]);
 
-        $reservation = new Reservation();
+        $car = Car::find($request->car_id);
+        if ($car == null) {
+            return response()
+                ->json(['message' => 'Car with given ID '.$request->car_id.' does not exist'], Response::HTTP_NOT_FOUND);
+        }
 
         $customer = Customer::firstOrCreate(
             ['email' => $request->email],
             ['name' => $request->name, 'phone' => $request->phone]
         );
 
+        $reservation = new Reservation();
         $reservation->rent_date = $reservation->correctDateFormatFromISO8601($request->from);
         $reservation->return_date = $reservation->correctDateFormatFromISO8601($request->to);
         $reservation->note = $request->note;
         $reservation->customer()->associate($customer);
         $reservation->state = ReservationState::Created();
-
-        
         $reservation->car()->associate($car);
-
         $reservation->save();
 
         $this->craeteAdvanceBillingFile($reservation);
@@ -66,9 +68,8 @@ class ReservationController extends Controller
 
         $file = new File();
         $file->name = $billing->fileName();
-        $file->absolutePath = $billing->filePath();
+        $file->absolute_path = $billing->absolutePath();
         $file->reservation()->associate($reservation);
-
         $file->save();
     }
 }
