@@ -20,6 +20,9 @@ Route::post('/jwt', 'UserController@login');
 
 Route::get('/cars', 'CarController@index');
 Route::get('/cars/{carId}', 'CarController@show');
+
+// Reservations
+
 Route::post('/reservation', 'ReservationController@store');
 
 // Administration
@@ -29,4 +32,8 @@ Route::middleware(['auth:api', 'usertype'])->group(function() {
     // Cars administration
 
     Route::middleware(['scope:'.UserType::Admin()->key])->post('/cars/models', 'CarModelController@store');
+
+    // Get list of reservations
+
+    Route::middleware(['scope:'.UserType::Admin()->key])->get('/reservation', 'ReservationController@index');
 });

@@ -12,12 +12,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ReservationController extends Controller
 {
-    //
+
     public function index()
     {
         $reservations= Reservation::all();
 
-        return response()->json([ 'data' => $reservations ], 200);
+        return response()
+            ->json([ 'data' => $reservations ], Response::HTTP_OK);
     }
 
     public function store(Request $request)
