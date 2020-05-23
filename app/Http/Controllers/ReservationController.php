@@ -8,17 +8,18 @@ use App\Customer;
 use App\Car;
 use App\FileHandlers\BillingFactory;
 use App\Enums\ReservationState;
+use App\Http\Resources\ReservationResource;
 use Symfony\Component\HttpFoundation\Response;
 
 class ReservationController extends Controller
 {
 
+    /**
+     * @return ReservationResource
+     */
     public function index()
     {
-        $reservations= Reservation::all();
-
-        return response()
-            ->json([ 'data' => $reservations ], Response::HTTP_OK);
+        return ReservationResource::collection(Reservation::all());
     }
 
     public function store(Request $request)

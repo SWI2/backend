@@ -23,6 +23,6 @@ class BillingFactory
     {
         $mpdf = new Mpdf();
         $mpdf->WriteHTML('Hello World');
-        $content = $mpdf->Output(storage_path().'/app/Test.pdf', \Mpdf\Output\Destination::FILE);
+        $mpdf->Output(storage_path().'/app/Test.pdf', \Mpdf\Output\Destination::FILE);
     }
 }

@@ -5,8 +5,8 @@ namespace App;
 class File extends BaseModel
 {
 
-    public function fileable()
+    public function reservation()
     {
-        return $this->morphTo();
+        return $this->hasOne('App\Reservation', 'reservation_id');
     }
 }
