@@ -55,21 +55,12 @@ class ReservationController extends Controller
         $reservation->car()->associate($car);
         $reservation->save();
 
-        $this->craeteAdvanceBillingFile($reservation);
+        $generator = new ReservationAdvanceBillingFileGenerator($reservation);
+        $file = $generator->generateFile();
+        $file->reservation()->associate($reservation);
+        $file->save();
 
         return response()
             ->json(['success' => true], Response::HTTP_CREATED);
-    }
-
-    private function craeteAdvanceBillingFile(Reservation $reservation) 
-    {
-        $billing = new ReservationAdvanceBillingFileGenerator($reservation);
-        $billing->generate();
-
-        $file = new File();
-        $file->name = $billing->fileName();
-        $file->absolute_path = $billing->absolutePath();
-        $file->reservation()->associate($reservation);
-        $file->save();
     }
 }

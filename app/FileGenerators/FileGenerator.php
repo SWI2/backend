@@ -2,27 +2,29 @@
 
 namespace App\FileGenerators;
 
+use App\File;
+
 abstract class FileGenerator
 {
     /**
      * Generates file at with given name and path.
      */
-    abstract public function generate();
+    abstract protected function generate();
 
     /**
      * @return Name of created file.
      */
-    abstract public function fileName();
+    abstract protected function fileName();
 
     /**
      * @return Absolute path to created file.
      */
-    abstract public function directoryPath();
+    abstract protected function directoryPath();
 
     /**
      * Createtes directory if not exists according directoryPath() result.
      */
-    public function createDirectoryIfNotExists()
+    protected function createDirectoryIfNotExists()
     {
         $path = $this->directoryPath();
         if (!file_exists($path)) {
@@ -33,8 +35,21 @@ abstract class FileGenerator
     /**
      * @return string absolute path from directory + file name
      */
-    public function absolutePath()
+    protected function absolutePath()
     {
         return $this->directoryPath().'/'.$this->fileName();
+    }
+
+    /**
+     * @return File instance with name and absolute path parameters.
+     */
+    public function generateFile()
+    {
+        $this->generate();
+        $file = new File();
+        $file->name = $this->fileName();
+        $file->absolute_path = $this->absolutePath();
+        $file->save();
+        return $file;
     }
 }

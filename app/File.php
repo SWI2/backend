@@ -2,8 +2,12 @@
 
 namespace App;
 
+use App\FileGeneratos\FileGenerator;
+
 class File extends BaseModel
 {
+    // Relationships
+
     public function reservation()
     {
         return $this->belongsTo('App\Reservation');

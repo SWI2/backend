@@ -9,7 +9,7 @@ class ReservationAdvanceBillingFileGenerator extends FileGenerator
 {
     // Properties
 
-    public Reservation $reservation;
+    private Reservation $reservation;
 
     // Init
 
@@ -19,7 +19,7 @@ class ReservationAdvanceBillingFileGenerator extends FileGenerator
 
     // IFileGenerator
 
-    public function generate()
+    protected function generate()
     {
         $mpdf = new Mpdf();
         $mpdf->WriteHTML('Hello World');
@@ -27,12 +27,12 @@ class ReservationAdvanceBillingFileGenerator extends FileGenerator
         $mpdf->Output($this->absolutePath(), \Mpdf\Output\Destination::FILE);
     }
 
-    public function fileName()
+    protected function fileName()
     {
         return 'AdvanceBilling.pdf';
     }
 
-    public function directoryPath()
+    protected function directoryPath()
     {
         return storage_path().'/app/reservations/'.$this->reservation->id;
     }
