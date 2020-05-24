@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Storage;
 class ReservationControllerTest extends SeededTest
 {
 
+    public function tearDown()
+    {
+        Storage::deleteDirectory('/reservations');
+        parent::tearDown();
+    }
+
     /** @test*/
     public function reservation_create_success()
     {

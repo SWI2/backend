@@ -10,7 +10,7 @@ class SeededTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function setUp(): void
+    public function setUp()
     {
         parent::setUp();
         $this->artisan('db:seed');
