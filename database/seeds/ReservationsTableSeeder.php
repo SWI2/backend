@@ -12,11 +12,12 @@ class ReservationsTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {   
+        $path = storage_path('app');
         factory(Reservation::class, 3)->create();
         $reservations = Reservation::all();
         foreach ($reservations as $reservation) {
-            $generator = new ReservationAdvanceBillingFileGenerator($reservation);
+            $generator = new ReservationAdvanceBillingFileGenerator($reservation, $path);
             $file = $generator->generateFile();
             $file->reservation()->associate($reservation);
             $file->save();

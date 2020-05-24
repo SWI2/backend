@@ -4,17 +4,20 @@ namespace App\FileGenerators;
 
 use App\Reservation;
 use Mpdf\Mpdf;
+use Illuminate\Support\Facades\Storage;
 
 class ReservationAdvanceBillingFileGenerator extends FileGenerator
 {
     // Properties
 
     private Reservation $reservation;
+    private string $storagePath;
 
     // Init
 
-    public function __construct(Reservation $reservation) {
+    public function __construct(Reservation $reservation, string $storagePath) {
         $this->reservation = $reservation;
+        $this->storagePath = $storagePath;
     }
 
     // IFileGenerator
@@ -34,6 +37,6 @@ class ReservationAdvanceBillingFileGenerator extends FileGenerator
 
     protected function directoryPath()
     {
-        return storage_path().'/app/reservations/'.$this->reservation->id;
+        return '/reservations/'.$this->reservation->id;
     }
 }
