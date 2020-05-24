@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Http\Resources\CarResource;
+use App\Http\Resources\FileResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ReservationResource extends JsonResource
@@ -22,7 +23,7 @@ class ReservationResource extends JsonResource
             'rent_date' => $this->rent_date->format('c'),
             'return_date' => $this->return_date->format('c'),
             'car' => new CarResource($this->car),
-            'files' => $this->files
+            'files' => FileResource::collection($this->files)
         ];
     }
 }
