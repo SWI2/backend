@@ -11,13 +11,11 @@ class ReservationAdvanceBillingFileGenerator extends FileGenerator
     // Properties
 
     private Reservation $reservation;
-    private string $storagePath;
 
     // Init
 
-    public function __construct(Reservation $reservation, string $storagePath) {
+    public function __construct(Reservation $reservation) {
         $this->reservation = $reservation;
-        $this->storagePath = $storagePath;
     }
 
     // IFileGenerator
@@ -26,8 +24,8 @@ class ReservationAdvanceBillingFileGenerator extends FileGenerator
     {
         $mpdf = new Mpdf();
         $mpdf->WriteHTML('Hello World');
-        $this->createDirectoryIfNotExists();
-        $mpdf->Output($this->absolutePath(), \Mpdf\Output\Destination::FILE);
+        $content = $mpdf->Output('', \Mpdf\Output\Destination::STRING_RETURN);
+        Storage::put($this->absolutePath(), $content);
     }
 
     protected function fileName()

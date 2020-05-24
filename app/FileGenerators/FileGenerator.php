@@ -22,17 +22,6 @@ abstract class FileGenerator
     abstract protected function directoryPath();
 
     /**
-     * Createtes directory if not exists according directoryPath() result.
-     */
-    protected function createDirectoryIfNotExists()
-    {
-        $path = $this->directoryPath();
-        if (!file_exists($path)) {
-            mkdir($path, 0775, true);
-        }
-    }
-
-    /**
      * @return string absolute path from directory + file name
      */
     protected function absolutePath()

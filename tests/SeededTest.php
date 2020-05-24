@@ -14,6 +14,7 @@ class SeededTest extends TestCase
     public function setUp()
     {
         parent::setUp();
+        Storage::fake();
         $this->artisan('db:seed');
     }
 }

@@ -55,7 +55,7 @@ class ReservationController extends Controller
         $reservation->car()->associate($car);
         $reservation->save();
 
-        $generator = new ReservationAdvanceBillingFileGenerator($reservation, storage_path('app'));
+        $generator = new ReservationAdvanceBillingFileGenerator($reservation);
         $file = $generator->generateFile();
         $file->reservation()->associate($reservation);
         $file->save();
