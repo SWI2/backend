@@ -26,13 +26,14 @@ class UserController extends Controller
         ]);
 
         $credentials = $request->only('email', 'password');
-
+        
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
             $this->scope = $user->type->key;
 
             $token = $user->createToken($user->email.'-'.now(), [$this->scope]);
+            
             return new JwtResource($token);
         } else {
             return response()

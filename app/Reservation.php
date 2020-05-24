@@ -17,7 +17,10 @@ class Reservation extends BaseModel
         'returner_id', 
     ];
 
-    public $timestamps = false;
+    protected $dates = [
+        'rent_date', 
+        'return_date'
+    ];
 
     /**
      * The attributes which are represented as enum.
@@ -35,7 +38,7 @@ class Reservation extends BaseModel
 
     public function files()
     {
-        return $this->morphMany('App\File', 'fileable');
+        return $this->hasMany('App\File');
     }
 
     public function customer()
@@ -51,5 +54,10 @@ class Reservation extends BaseModel
     public function renter()
     {
         return $this->hasOne('App\User', 'renter_id');
+    }
+
+    public function car()
+    {
+        return $this->belongsTo('App\Car');
     }
 }
