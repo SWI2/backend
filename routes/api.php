@@ -36,4 +36,8 @@ Route::middleware(['auth:api', 'usertype'])->group(function() {
     // Get list of reservations
 
     Route::middleware(['scope:'.UserType::Admin()->key])->get('/reservation', 'ReservationController@index');
+
+    // File download
+
+    Route::middleware(['scope:'.UserType::Admin()->key])->get('/file/{fileId}', 'FileController@download');
 });

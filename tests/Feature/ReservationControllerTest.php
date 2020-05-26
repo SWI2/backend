@@ -46,7 +46,7 @@ class ReservationControllerTest extends SeededTest
 
         $reservation = Reservation::where('note', $note)->first();
 
-        $path = '/reservations/'.$reservation->id.'/AdvanceBilling.pdf';
+        $path = '/public/reservations/'.$reservation->id.'/AdvanceBilling.pdf';
         $fileExists = Storage::disk('local')->exists($path);
 
         $this->assertTrue($fileExists);

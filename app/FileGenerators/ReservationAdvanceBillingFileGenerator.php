@@ -35,6 +35,6 @@ class ReservationAdvanceBillingFileGenerator extends FileGenerator
 
     protected function directoryPath()
     {
-        return '/reservations/'.$this->reservation->id;
+        return '/public/reservations/'.$this->reservation->id;
     }
 }
