@@ -22,7 +22,7 @@ class CreateReservationsTable extends Migration
             $table->bigInteger('car_id');
 
             $table->smallInteger('state');
-            $table->string('note');
+            $table->string('note')->nullable();
             $table->date('rent_date');
             $table->date('return_date');
 

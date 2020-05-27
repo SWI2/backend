@@ -31,7 +31,6 @@ class ReservationController extends Controller
             'phone' =>'required' ,
             'from' =>'required' ,
             'to' =>'required' ,
-            'note' =>'required' ,
             'car_id' =>'required' ,
         ]);
 

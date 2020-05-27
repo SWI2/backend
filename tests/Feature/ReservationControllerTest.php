@@ -21,7 +21,6 @@ class ReservationControllerTest extends SeededTest
             'phone' => '+420123456789',
             'from' => '2020-03-06T19:30Z',
             'to' => '2020-03-06T19:30Z',
-            'note' => 'Some note',
             'car_id' => 1
         ]);
 
