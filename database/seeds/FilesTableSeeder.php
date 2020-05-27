@@ -14,12 +14,6 @@ class FilesTableSeeder extends Seeder
      */
     public function run()
     {
-        $reservations = Reservation::all();
-        foreach ($reservations as $reservation) {
-            $generator = new ReservationAdvanceBillingFileGenerator($reservation);
-            $file = $generator->generateFile();
-            $file->reservation()->associate($reservation);
-            $file->save();
-        }
+        
     }
 }
